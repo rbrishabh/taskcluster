@@ -210,10 +210,6 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
   descriptionTextField: {
     marginBottom: theme.spacing.quad,
   },
-  list: {
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
 }))
 export default class QuickStart extends Component {
   initialEvents = new Set([
@@ -400,7 +396,7 @@ export default class QuickStart extends Component {
           </HelpView>
         }>
         <Fragment>
-          <List className={classes.list}>
+          <List>
             <ListItem>
               <TextField
                 label="Organization Name"
