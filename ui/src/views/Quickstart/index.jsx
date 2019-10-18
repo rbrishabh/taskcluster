@@ -162,12 +162,6 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
 @hot(module)
 @withApollo
 @withStyles(theme => ({
-  orgRepo: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: 6 * theme.spacing.unit,
-    ...theme.mixins.gutters(),
-  },
   separator: {
     padding: theme.spacing.double,
     paddingBottom: 0,
@@ -191,11 +185,13 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
   iconContainer: {
     marginLeft: theme.spacing.unit,
     marginTop: theme.spacing.double,
+    alignItems: 'center',
+    marginBottom: 6 * theme.spacing.unit,
+    ...theme.mixins.gutters(),
   },
   taskShouldRunFlex: {
     display: 'flex',
     width: '100%',
-    justifyContent: 'space-between',
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
     },
@@ -211,11 +207,12 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
   mainHeading: {
     marginTop: -theme.spacing.triple,
   },
-  generalSpacing: {
-    marginTop: -2 * theme.spacing.unit,
+  descriptionTextField: {
+    marginBottom: theme.spacing.quad,
   },
-  descriptionSpacing: {
-    marginBottom: 2 * theme.spacing.unit,
+  list: {
+    paddingLeft: 0,
+    paddingRight: 0,
   },
 }))
 export default class QuickStart extends Component {
@@ -403,35 +400,39 @@ export default class QuickStart extends Component {
           </HelpView>
         }>
         <Fragment>
-          <div className={classes.orgRepo}>
-            <TextField
-              label="Organization Name"
-              name="owner"
-              fullWidth
-              onChange={this.handleOrgRepoChange}
-              value={owner}
-              autoFocus
-            />
-            <Typography className={classes.separator} variant="h5">
-              /
-            </Typography>
-            <TextField
-              label="Repository Name"
-              name="repo"
-              fullWidth
-              onChange={this.handleOrgRepoChange}
-              value={repo}
-            />
-            <div className={classes.iconContainer}>
-              {(installedState === 'success' && (
-                <CheckIcon className={classes.checkIcon} />
+          <List className={classes.list}>
+            <ListItem>
+              <TextField
+                label="Organization Name"
+                name="owner"
+                fullWidth
+                onChange={this.handleOrgRepoChange}
+                value={owner}
+                autoFocus
+              />
+              <Typography className={classes.separator} variant="h5">
+                /
+              </Typography>
+              <TextField
+                label="Repository Name"
+                name="repo"
+                fullWidth
+                onChange={this.handleOrgRepoChange}
+                value={repo}
+              />
+            </ListItem>
+          </List>
+
+          <div className={classes.iconContainer}>
+            {(installedState === 'success' && (
+              <CheckIcon className={classes.checkIcon} />
+            )) ||
+              (installedState === 'error' && (
+                <AlertCircleOutlineIcon className={classes.errorIcon} />
               )) ||
-                (installedState === 'error' && (
-                  <AlertCircleOutlineIcon className={classes.errorIcon} />
-                )) ||
-                (installedState === 'loading' && <Spinner size={24} />)}
-            </div>
+              (installedState === 'loading' && <Spinner size={24} />)}
           </div>
+
           {installedState === 'error' && (
             <ErrorPanel
               className={classes.errorPanels}
@@ -439,11 +440,11 @@ export default class QuickStart extends Component {
               contact the organization owner to have it set up!"
             />
           )}
-          <Typography className={classes.mainHeading} variant="h6">
+          <Typography className={classes.mainHeading} variant="subheading">
             Create Your Task Definition
           </Typography>
           <List>
-            <ListItem className={classes.generalSpacing}>
+            <ListItem>
               <TextField
                 label="Name"
                 name="taskName"
@@ -452,7 +453,7 @@ export default class QuickStart extends Component {
                 value={taskName}
               />
             </ListItem>
-            <ListItem className={classes.descriptionSpacing}>
+            <ListItem className={classes.descriptionTextField}>
               <TextField
                 label="Description"
                 name="taskDescription"
@@ -463,7 +464,7 @@ export default class QuickStart extends Component {
                 value={taskDescription}
               />
             </ListItem>
-            <ListItem className={classes.generalSpacing}>
+            <ListItem>
               <FormControl component="fieldset">
                 <FormLabel component="legend">
                   This task should run on
@@ -543,7 +544,7 @@ export default class QuickStart extends Component {
                 </div>
               </FormControl>
             </ListItem>
-            <ListItem className={classes.generalSpacing}>
+            <ListItem>
               <TextField
                 id="select-access"
                 select
@@ -557,7 +558,7 @@ export default class QuickStart extends Component {
                 <MenuItem value="collaborators">Collaborators</MenuItem>
               </TextField>
             </ListItem>
-            <ListItem className={classes.generalSpacing}>
+            <ListItem>
               <TextField
                 id="select-language"
                 select
@@ -573,7 +574,7 @@ export default class QuickStart extends Component {
                 <MenuItem value="go">Go</MenuItem>
               </TextField>
             </ListItem>
-            <ListItem className={classes.generalSpacing}>
+            <ListItem>
               <TextField
                 id="select-commands"
                 select
@@ -587,7 +588,7 @@ export default class QuickStart extends Component {
                 <MenuItem value="custom">I will define them myself</MenuItem>
               </TextField>
             </ListItem>
-            <ListItem className={classes.generalSpacing}>
+            <ListItem>
               <ListItemText
                 disableTypography
                 primary={
