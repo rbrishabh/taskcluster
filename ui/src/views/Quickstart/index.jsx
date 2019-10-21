@@ -185,9 +185,6 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
   iconContainer: {
     marginLeft: theme.spacing.unit,
     marginTop: theme.spacing.double,
-    alignItems: 'center',
-    marginBottom: 6 * theme.spacing.unit,
-    ...theme.mixins.gutters(),
   },
   taskShouldRunFlex: {
     display: 'flex',
@@ -205,10 +202,18 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
     },
   },
   mainHeading: {
-    marginTop: -theme.spacing.triple,
+    paddingLeft: theme.spacing.double,
   },
   descriptionTextField: {
     marginBottom: theme.spacing.quad,
+  },
+  orgRepoStatus: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 2 * theme.spacing.unit,
+  },
+  listStyle: {
+    width: '100%',
   },
 }))
 export default class QuickStart extends Component {
@@ -396,37 +401,39 @@ export default class QuickStart extends Component {
           </HelpView>
         }>
         <Fragment>
-          <List>
-            <ListItem>
-              <TextField
-                label="Organization Name"
-                name="owner"
-                fullWidth
-                onChange={this.handleOrgRepoChange}
-                value={owner}
-                autoFocus
-              />
-              <Typography className={classes.separator} variant="h5">
-                /
-              </Typography>
-              <TextField
-                label="Repository Name"
-                name="repo"
-                fullWidth
-                onChange={this.handleOrgRepoChange}
-                value={repo}
-              />
-            </ListItem>
-          </List>
+          <div className={classes.orgRepoStatus}>
+            <List className={classes.listStyle}>
+              <ListItem>
+                <TextField
+                  label="Organization Name"
+                  name="owner"
+                  fullWidth
+                  onChange={this.handleOrgRepoChange}
+                  value={owner}
+                  autoFocus
+                />
+                <Typography className={classes.separator} variant="h5">
+                  /
+                </Typography>
+                <TextField
+                  label="Repository Name"
+                  name="repo"
+                  fullWidth
+                  onChange={this.handleOrgRepoChange}
+                  value={repo}
+                />
+              </ListItem>
+            </List>
 
-          <div className={classes.iconContainer}>
-            {(installedState === 'success' && (
-              <CheckIcon className={classes.checkIcon} />
-            )) ||
-              (installedState === 'error' && (
-                <AlertCircleOutlineIcon className={classes.errorIcon} />
+            <div className={classes.iconContainer}>
+              {(installedState === 'success' && (
+                <CheckIcon className={classes.checkIcon} />
               )) ||
-              (installedState === 'loading' && <Spinner size={24} />)}
+                (installedState === 'error' && (
+                  <AlertCircleOutlineIcon className={classes.errorIcon} />
+                )) ||
+                (installedState === 'loading' && <Spinner size={24} />)}
+            </div>
           </div>
 
           {installedState === 'error' && (
@@ -436,7 +443,7 @@ export default class QuickStart extends Component {
               contact the organization owner to have it set up!"
             />
           )}
-          <Typography className={classes.mainHeading} variant="subheading">
+          <Typography className={classes.mainHeading} variant="subtitle1">
             Create Your Task Definition
           </Typography>
           <List>
