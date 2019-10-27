@@ -359,7 +359,6 @@ export default class QuickStart extends Component {
                 For independent developers and organization owners: How to set
                 up your repository with {window.env.APPLICATION_NAME}
               </Typography>
-
               <ul>
                 <li>
                   <Typography paragraph>
