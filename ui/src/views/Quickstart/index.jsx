@@ -359,19 +359,24 @@ export default class QuickStart extends Component {
                 For independent developers and organization owners: How to set
                 up your repository with {window.env.APPLICATION_NAME}
               </Typography>
-              <Typography paragraph>
-                <ul>
-                  <li>
+
+              <ul>
+                <li>
+                  <Typography paragraph>
                     Fill out the form below. All changes in the form will
                     instantly show up in the code field.
-                  </li>
-                  <li>
+                  </Typography>
+                </li>
+                <li>
+                  <Typography paragraph>
                     When you are done editing, copy the contents of the code
                     field and paste it into a file named{' '}
                     <code>.taskcluster.yml</code> in the root of your
                     repository.
-                  </li>
-                  <li>
+                  </Typography>
+                </li>
+                <li>
+                  <Typography paragraph>
                     Make sure to install the{' '}
                     <a
                       href="https://github.com/apps/taskcluster"
@@ -380,9 +385,9 @@ export default class QuickStart extends Component {
                       Taskcluster-GitHub integration
                     </a>
                     .
-                  </li>
-                </ul>
-              </Typography>
+                  </Typography>
+                </li>
+              </ul>
               <Typography paragraph>
                 Optionally, after you create your file, you can edit it here or
                 in you favorite editor to add more functionality. Please refer
