@@ -193,14 +193,6 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
       flexDirection: 'column',
     },
   },
-  formLabelSpacing: {
-    marginTop: -0.5 * theme.spacing.unit,
-    marginBottom: -0.5 * theme.spacing.unit,
-    marginRight: 4 * theme.spacing.triple,
-    [theme.breakpoints.down('sm')]: {
-      marginRight: theme.spacing.double,
-    },
-  },
   mainHeading: {
     paddingLeft: theme.spacing.double,
   },
@@ -479,7 +471,6 @@ export default class QuickStart extends Component {
                 <div className={classes.taskShouldRunFlex}>
                   <FormGroup>
                     <FormControlLabel
-                      className={classes.formLabelSpacing}
                       control={
                         <Checkbox
                           checked={events.has('pull_request.opened')}
@@ -490,7 +481,6 @@ export default class QuickStart extends Component {
                       label="Pull request opened"
                     />
                     <FormControlLabel
-                      className={classes.formLabelSpacing}
                       control={
                         <Checkbox
                           checked={events.has('pull_request.closed')}
@@ -501,7 +491,6 @@ export default class QuickStart extends Component {
                       label="Pull request merged or closed"
                     />
                     <FormControlLabel
-                      className={classes.formLabelSpacing}
                       control={
                         <Checkbox
                           checked={events.has('pull_request.reopened')}
@@ -514,7 +503,6 @@ export default class QuickStart extends Component {
                   </FormGroup>
                   <FormGroup>
                     <FormControlLabel
-                      className={classes.formLabelSpacing}
                       control={
                         <Checkbox
                           checked={events.has('pull_request.synchronize')}
@@ -525,7 +513,6 @@ export default class QuickStart extends Component {
                       label="New commit made in an opened pull request"
                     />
                     <FormControlLabel
-                      className={classes.formLabelSpacing}
                       control={
                         <Checkbox
                           checked={events.has('push')}
@@ -537,7 +524,6 @@ export default class QuickStart extends Component {
                     />
 
                     <FormControlLabel
-                      className={classes.formLabelSpacing}
                       control={
                         <Checkbox
                           checked={events.has('release')}
