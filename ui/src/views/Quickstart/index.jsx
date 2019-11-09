@@ -205,7 +205,10 @@ const cmdDirectory = (type, org = '<YOUR_ORG>', repo = '<YOUR_REPO>') =>
     marginBottom: 2 * theme.spacing.unit,
   },
   listStyle: {
-    width: '100%',
+    width: '97%',
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+    },
   },
 }))
 export default class QuickStart extends Component {
@@ -398,7 +401,7 @@ export default class QuickStart extends Component {
         }>
         <Fragment>
           <div className={classes.orgRepoStatus}>
-            <List className={classes.listStyle}>
+            <div className={classes.listStyle}>
               <ListItem>
                 <TextField
                   label="Organization Name"
@@ -419,7 +422,7 @@ export default class QuickStart extends Component {
                   value={repo}
                 />
               </ListItem>
-            </List>
+            </div>
 
             <div className={classes.iconContainer}>
               {(installedState === 'success' && (
